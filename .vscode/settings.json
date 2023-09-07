@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "codecvt": "cpp",
+        "vector": "cpp",
+        "algorithm": "cpp",
+        "locale": "cpp"
+    }
+}
