@@ -31,31 +31,9 @@ void app_main(void);
 }
 
 void app_main() {
-  gpio_set_direction(GPIO_NUM_45, GPIO_MODE_OUTPUT);
-
-  uart_config_t uart_config = {
-      .baud_rate = 115200,
-      .data_bits = UART_DATA_8_BITS,
-      .parity = UART_PARITY_DISABLE,
-      .stop_bits = UART_STOP_BITS_1,
-      .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
-  };
-
-  uart_param_config(UART_NUM_0, &uart_config);
-  uart_set_pin(UART_NUM_0, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
-
-  uart_driver_install(UART_NUM_0, 256, 0, 0, NULL, 0);
-
-  while (!uart_is_driver_installed(UART_NUM_0)) {
-    vTaskDelay(pdMS_TO_TICKS(50));
-  }
-
-  println("init");
-
   Adafruit_SSD1306 _display = Adafruit_SSD1306(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS1);
 
-  while ((!_display[i].begin(SSD1306_SWITCHCAPVCC))) {
-    println("um erro occorreu no SSD1306: ");
+  while ((!_display.begin(SSD1306_SWITCHCAPVCC))) {
     delay(50);
   }
 
@@ -66,10 +44,10 @@ void app_main() {
   _display.setTextColor(SSD1306_INVERSE);  // Draw white text
   _display.setCursor(XInicial, Yinicial);  // Start at top-left corner
   _display.cp437(true);                    // Use full 256 char 'Code Page 437' font
-  _display.write("\0");
-  _display.display();
+
   _display.write('o');
   _display.write('i');
+  _display.display();
 
   while (1) {
   }
