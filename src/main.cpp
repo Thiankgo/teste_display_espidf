@@ -20,11 +20,11 @@
 #define LETRA_POR_DISPLAY 5
 #define CELA_WIDTH 25
 
-#define OLED_MOSI 12
-#define OLED_CLK 13
-#define OLED_DC 6
-#define OLED_CS1 11
-#define OLED_RESET 5
+#define OLED_MOSI 41
+#define OLED_CLK 42
+#define OLED_DC 43
+#define OLED_CS1 44
+#define OLED_RESET 46
 
 extern "C" {
 void app_main(void);
@@ -50,5 +50,6 @@ void app_main() {
   _display.display();
 
   while (1) {
+    delay(5000);
   }
 }
